@@ -1,13 +1,13 @@
 Associations::Application.routes.draw do
-  get 'user/edit' => 'users#edit', :as => :edit_current_user
+  match 'user/edit' => 'users#edit', :as => :edit_current_user
 
-  get 'signup' => 'users#new', :as => :signup
+  match 'signup' => 'users#new', :as => :signup
 
-  get 'logout' => 'sessions#destroy', :as => :logout
+  match 'logout' => 'sessions#destroy', :as => :logout
 
-  get 'login' => 'sessions#new', :as => :login
+  match 'login' => 'sessions#new', :as => :login
 
-  root :to => "users#new"
+  root :to => "sessions#new"
 
   resources :users
 
