@@ -1,0 +1,32 @@
+
+
+<p>
+  <strong>Name :</strong>
+  <%= @student.name %>
+</p>
+<p>
+  <strong>Age :</strong>
+  <%= @student.age %>
+</p>
+<p>
+  <strong>Address :</strong>
+  <%= @student.address %>
+</p>
+
+<p>
+  <strong>Courses Assigned to </strong>
+  <%= @student.name %>
+  <strong>are : </strong>
+</p>
+<%@student.courses.each do |t|%>
+  <table>
+    <td><%=  t.name %></td>
+  <%end%>
+</table>
+
+<p>
+  <%= link_to "Edit", edit_student_path(@student) %> |
+  <%= link_to "Assign Course", assign_course_student_path(@student) %> |
+  <%= link_to "Destroy", @student, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", students_path %>
+</p>

@@ -1,0 +1,9 @@
+one:
+  name: MyString
+  age: 1
+  address: MyText
+
+two:
+  name: MyString
+  age: 1
+  address: MyText

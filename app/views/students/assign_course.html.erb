@@ -1,0 +1,39 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<%= form_for @student do |assign| %>
+
+  <p>
+    <strong>Name :</strong>
+    <%= @student.name %>
+  </p>
+  <p>
+    <strong>Age :</strong>
+    <%= @student.age %>
+  </p>
+  <p>
+    <strong>Address :</strong>
+    <%= @student.address %>
+  </p>
+
+  <p>
+    <strong>Assign Courses To </strong>
+    <%= @student.name %>
+  </p>
+
+  <% for course in Course.find(:all) %>
+    <div>
+      <%= check_box_tag "student[course_ids][]", course.id,
+        @student.courses.include?(course) %>
+      <%= course.name %>
+    </div>
+
+  <% end %>
+
+  
+
+  <p><%= assign.submit %></p>
+
+<% end %>
