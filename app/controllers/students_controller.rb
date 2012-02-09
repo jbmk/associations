@@ -38,11 +38,11 @@ class StudentsController < ApplicationController
     end
   end
   
-  def raise_error_for_empty
+  def raise_error_when_no_courses_assigned
     if params[:student].blank?
       @student.courses = []
       @student.update_attributes(params[:student])
-      redirect_to assign_course_student_path, :alert => "Atleast One Course Should be Assigned to a Student"
+      redirect_to assign_course_student_path, :alert => "Atleast One Course Should be Assigned to #{@student.name}"
     else
       @student.update_attributes(params[:student])
       redirect_to @student

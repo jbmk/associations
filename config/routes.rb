@@ -16,7 +16,7 @@ Associations::Application.routes.draw do
   resources :students do
     member do
       get 'assign_course'
-      post 'raise_error_for_empty'
+      post 'raise_error_when_no_courses_assigned'
     end
   end
     

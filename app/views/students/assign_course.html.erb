@@ -3,7 +3,7 @@
 # and open the template in the editor.
 %>
 
-<%= form_for :student, :url => raise_error_for_empty_student_path(params[:id]) do |assign| %>
+<%= form_for :student, :url => raise_error_when_no_courses_assigned_student_path(params[:id]) do |assign| %>
 
   <p>
     <strong>Name :</strong>
