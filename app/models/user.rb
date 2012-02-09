@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  # new columns need to be added here to be writable through mass assignment
+  has_many :students, :dependent => :destroy
+  has_many :courses, :dependent => :destroy
+  
   attr_accessible :username, :email, :password, :password_confirmation
 
   attr_accessor :password
@@ -12,6 +14,8 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4, :allow_blank => true
+
+  
 
   # login can be either username or email address
   def self.authenticate(login, pass)

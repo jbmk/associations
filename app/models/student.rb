@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  # attr_accessible :name, :age, :address
+  belongs_to :user
   has_many :course_students, :dependent => :destroy
   has_many :courses, :through => :course_students
 end

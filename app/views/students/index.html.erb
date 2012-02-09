@@ -1,5 +1,10 @@
 <h1>Students Record </h1>
 
+<p>
+  You are logged in as
+  <strong><%= current_user.username%></strong>
+</p>
+
 <table>
   <tr>
     <th>Name</th>
@@ -7,19 +12,28 @@
     <th>Address</th>
   </tr>
   <% for student in @students %>
-    <tr>
-      <td><%= student.name %></td>
-      <td><%= student.age %></td>
-      <td><%= student.address %></td>
-      <td><%= link_to "Show", student %></td>
-      <td><%= link_to "Assign Course", assign_course_student_path(student) %></td>
-      <td><%= link_to "Edit", edit_student_path(student) %></td>
-      <td><%= link_to "Destroy", student, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+    
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.age %></td>
+        <td><%= student.address %></td>
+
+        <td><%= link_to "Show", student %> | </td>
+
+        <%  if student.user_id == current_user.id %>
+        
+        <td><%= link_to "Assign Course", assign_course_student_path(student) %> |
+       <%= link_to "Edit", edit_student_path(student) %> |
+       <%= link_to "Destroy", student, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
 
-<p><%= link_to "New Student", new_student_path %></p>
+<p>
+<%= link_to "Add New Student", new_student_path %> |
+<%= link_to "Add New Course", new_course_path %> |
+</p>
 
-<p><%= link_to "List of Courses", courses_path %></p>
+
 

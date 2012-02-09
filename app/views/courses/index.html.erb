@@ -5,16 +5,18 @@
     <th>Code</th>
   </tr>
   <% for course in @courses %>
-    <tr>
-      <td><%= course.name %></td>
-      <td><%= course.code %></td>
-      <td><%= link_to "Show", course %></td>
-      <td><%= link_to "Edit", edit_course_path(course) %></td>
-      <td><%= link_to "Destroy", course, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+    <% if course.user_id == current_user.id %>
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= course.code %></td>
+        <td><%= link_to "Show", course %></td>
+        <td><%= link_to "Edit", edit_course_path(course) %></td>
+        <td><%= link_to "Destroy", course, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
 
 <p><%= link_to "New Course", new_course_path %></p>
 
-<p><%= link_to "List of Students", students_path %></p>
+<p><%= link_to "Done", students_path %></p>

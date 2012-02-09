@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+
+<div id="user_nav">
+  <% if current_user %>
+    Logged in as <strong><%= current_user.email %></strong>
+    <%= link_to "Edit Profile", edit_current_user_path%> |
+    <%= link_to "Log out", logout_path %>
+  <% else %>
+  <% end %>
+</div>
+
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
@@ -7,6 +17,7 @@
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
+
   <body>
     <div id="container">
       <% flash.each do |name, msg| %>
@@ -18,12 +29,4 @@
   </body>
 </html>
 
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.email %>
-    <%= link_to "Log out", logout_path %>
-  <% else %>
-    <%= link_to "Sign up", signup_path %> or
-    <%= link_to "Log in", login_path %>
-  <% end %>
-</div>
+

@@ -3,7 +3,7 @@
 # and open the template in the editor.
 %>
 
-<%= form_for @student do |assign| %>
+<%= form_for :student, :url => raise_error_for_empty_student_path(params[:id]) do |assign| %>
 
   <p>
     <strong>Name :</strong>
@@ -24,6 +24,8 @@
   </p>
 
   <% for course in Course.find(:all) %>
+
+  <%  if course.user_id == current_user.id %>
     <div>
       <%= check_box_tag "student[course_ids][]", course.id,
         @student.courses.include?(course) %>
@@ -32,7 +34,7 @@
 
   <% end %>
 
-  
+  <% end %>
 
   <p><%= assign.submit %></p>
 
