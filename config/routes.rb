@@ -18,6 +18,10 @@ Associations::Application.routes.draw do
       get 'assign_course'
       post 'raise_error_when_no_courses_assigned'
     end
+    collection do
+      get 'excel_upload'
+      post 'excel_import'
+    end
   end
     
   

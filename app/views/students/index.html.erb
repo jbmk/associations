@@ -32,7 +32,11 @@
 
 <p>
 <%= link_to "Add New Student", new_student_path %> |
-<%= link_to "Add New Course", new_course_path %> |
+<%= link_to "Add New Course", new_course_path %>
+</p>
+
+<p>
+<%= link_to "Upload Excel Sheet", excel_upload_students_path(student) %>
 </p>
 
 

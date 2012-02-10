@@ -23,13 +23,15 @@ class CoursesController < ApplicationController
     end
   end
 
+  
+  
   def edit
     @course = Course.find(params[:id])
   end
 
   def update
-     @course = Course.find(params[:id])
-     @course.user_id = current_user.id
+    @course = Course.find(params[:id])
+    @course.user_id = current_user.id
     if @course.update_attributes(params[:course])
       redirect_to @course, :notice  => "Successfully updated course."
     else
@@ -43,7 +45,7 @@ class CoursesController < ApplicationController
     redirect_to courses_url, :notice => "Successfully destroyed course."
   end
 
-  private
+ private
   def check
     @course = Course.find(params[:id])
     if @course.user_id != current_user.id

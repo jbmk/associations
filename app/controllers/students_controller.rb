@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
-  before_filter :check, :except => [:index, :show, :new, :create]
-  
+  before_filter :check, :except => [:index, :show, :new, :create,
+    :excel_import, :excel_upload]
+
   def index
     @students = Student.all
   end
@@ -44,6 +45,30 @@ class StudentsController < ApplicationController
     end
   end
 
+  def excel_upload
+  end
+
+ 
+  def excel_import
+    require 'spreadsheet'
+    book = Spreadsheet::Workbook.new
+    book = Spreadsheet.open(params[:dump][:file].original_filename)
+    sheet1 = book.worksheet 0
+    n = 0
+    sheet1.each do |row|
+      @student = Student.new
+      @student.user_id = current_user.id
+      @student.name = row[0]
+      @student.age = row[1]
+      @student.address = row[2]
+      if @student.save
+        n += 1
+      end
+    end
+    redirect_to students_url, :notice => "Excel Import Successful, #{n} New records added to data base"
+  end
+  
+
   def update
     @student = Student.find(params[:id])
     @student.user_id = current_user.id
@@ -53,8 +78,6 @@ class StudentsController < ApplicationController
       render :action => 'edit'
     end
   end
-
-  
 
   def destroy
     @student = Student.find(params[:id])
@@ -70,3 +93,5 @@ class StudentsController < ApplicationController
     end
   end
 end
+
+  

@@ -4,7 +4,7 @@ gem 'rails', '3.0.10'
 
 gem "nifty-generators", :group => :development
 
-
+gem 'spreadsheet'
 
 
 # Bundle edge Rails instead:
