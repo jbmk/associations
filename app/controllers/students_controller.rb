@@ -51,7 +51,6 @@ class StudentsController < ApplicationController
  
   def excel_import
     require 'spreadsheet'
-    book = Spreadsheet::Workbook.new
     book = Spreadsheet.open(params[:dump][:file].original_filename)
     sheet1 = book.worksheet 0
     n = 0
