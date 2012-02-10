@@ -31,20 +31,15 @@ class StudentsController < ApplicationController
 
   def assign_course
     @student = Student.find(params[:id])
-    @student.course_ids.each do |arr|
-      @course_student = CourseStudent.new
-      @course_student.student_id = @student.id
-      @course_student.course_id = arr
-    end
   end
   
+  
   def raise_error_when_no_courses_assigned
+    @student.update_attributes(params[:student])
     if params[:student].blank?
       @student.courses = []
-      @student.update_attributes(params[:student])
       redirect_to assign_course_student_path, :alert => "Atleast One Course Should be Assigned to #{@student.name}"
     else
-      @student.update_attributes(params[:student])
       redirect_to @student
     end
   end
