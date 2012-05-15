@@ -1,6 +1,5 @@
 class StudentsController < ApplicationController
-  before_filter :check, :except => [:index, :show, :new, :create,
-    :excel_import, :excel_upload]
+  before_filter :check, :except => [:index, :show, :new, :create, :excel_import, :excel_upload]
 
   def index
     @students = Student.all
@@ -88,7 +87,7 @@ class StudentsController < ApplicationController
   def check
     @student = Student.find(params[:id])
     if @student.user_id != current_user.id
-      redirect_to students_path, :notice => "This Action Can't be Done by You"
+      redirect_to students_path, :alert => "This Action Can't be Done by You"
     end
   end
 end

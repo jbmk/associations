@@ -1,0 +1,18 @@
+<% title "Enter Password to Continue" %>
+
+<% form_for :password, :url => {:controller => "sessions", :action => "ask_for_password"} do -%>
+
+  <table>
+    <tr>
+      <td >
+        <%= label_tag :password %><br />
+        <%= password_field_tag :password -%>
+      </td>
+    </tr>
+    <tr>
+      <td colspan='2'>
+        <%= submit_tag 'Submit' -%>
+      </td>
+    </tr>
+  </table>
+<% end -%>

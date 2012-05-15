@@ -1,18 +1,18 @@
 class ApplicationController < ActionController::Base
+  before_filter :session_count
+
   include ControllerAuthentication
   protect_from_forgery
   helper_method :current_user
 
-  private
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
-  def authenticate
-    authenticate_or_request_with_http_basic do |user_name, password|
-      user_name == 'admin' && password == 'password'
+  def session_count
+    if (logged_in? && session[:count] <= 2)
+      session[:count] += 1
+      
+    elsif (logged_in? && session[:count] > 2)
+      redirect_to prompt_sessions_path, :alert => "You must enter Password to Continue"
     end
   end
-
+  
 end
   

@@ -7,7 +7,12 @@ Associations::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-  resources :sessions
+  resources :sessions do
+    collection do
+      get 'prompt'
+      post 'ask_for_password'
+    end
+  end
 
   resources :users
 

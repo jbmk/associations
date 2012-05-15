@@ -34,6 +34,7 @@ module ControllerAuthentication
       redirect_to login_url, :alert => "You must first log in or sign up before accessing this page."
     end
   end
+  
 
   def redirect_to_target_or_default(default, *args)
     redirect_to(session[:return_to] || default, *args)
